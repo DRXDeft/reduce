@@ -17,7 +17,6 @@ In your **command line**, set the environment variable ``PARLAY_NUM_THREADS`` us
 ```bash
 export PARLAY_NUM_THREADS=4  
 ```
-
 ## Adding granularity control  
 Edit the the following function in the file``reduce.h``:  
 ```C++
@@ -37,4 +36,14 @@ T reduce(T *A, size_t n) {
 }
 ```
 when $n$ is small enough, add the sum iteratively in sequential instead of dividing the tasks and computing the sum in parallel.  
+
+## Benchmark
+To test the performance of above reduce function, you can use parlay::timer
+```C++
+parlay::timer t;
+  sum = reduce(A,10000000);
+t.stop;
+std::cout << "The running time for the reduce function is " << t.total_time() << std::endl;
+```
+The timer has been included in the reduce.cpp. But you can also use it to test any part of the code as you like.
 
