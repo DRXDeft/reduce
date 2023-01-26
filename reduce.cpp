@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
     }
   }
   std::cout << "Average running time: " << total_time / num_rounds << std::endl;
-
+  std::cout << "The number of threads: " <<parlay::num_workers()<< std::endl;
   free(A);
   return 0;
 }
